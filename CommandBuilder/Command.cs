@@ -46,10 +46,13 @@ namespace CommandBuilder
                 }
                 else
                 {
-                    var code = key.GetVirtualKeyCode();
-                    if (code != VirtualKeyCode.VK_5)
+                    var codes = key.GetVirtualKeyCodes();
+                    foreach (var code in codes)
                     {
-                        keyboard.KeyPress(code);
+                        if (code != VirtualKeyCode.VK_5)
+                        {
+                            keyboard.KeyPress(code);
+                        }
                     }
                 }
             }
@@ -58,10 +61,13 @@ namespace CommandBuilder
             {
                 if (!key.IsWait())
                 {
-                    var code = key.GetVirtualKeyCode();
-                    if (code != VirtualKeyCode.VK_5)
+                    var codes = key.GetVirtualKeyCodes();
+                    foreach (var code in codes)
                     {
-                        keyboard.KeyUp(code);
+                        if (code != VirtualKeyCode.VK_5)
+                        {
+                            keyboard.KeyUp(code);
+                        }
                     }
                 }
             }
