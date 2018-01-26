@@ -21,6 +21,7 @@ namespace CommandBuilder
     /// </summary>
     public partial class MainWindow : Window
     {
+        GameClient gameClient;
         Stopwatch stopwatch = new Stopwatch();
 
         public MainWindow()
@@ -33,15 +34,28 @@ LP(30F)
 4+MP(10F)
 (20F)
 623+LK(100)";
+
+            var proccesses = Process.GetProcessesByName("XXX");
+            if (proccesses != null && proccesses.Length > 0)
+            {
+                this.gameClient = new GameClient(proccesses.First());
+            }
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
+            if (gameClient == null)
+            {
+                return;
+            }
+
             stopwatch.Restart();
             var commands = CommandCache.FindOrBuild(commandTextBox.Text);
             stopwatch.Stop();
 
             long overhead = stopwatch.ElapsedMilliseconds;
+
+            gameClient.Activate();
 
             stopwatch.Restart();
             foreach (var command in commands)
