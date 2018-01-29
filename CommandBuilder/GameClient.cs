@@ -9,6 +9,7 @@ namespace CommandBuilder
 {
     class GameClient
     {
+        public static string processName = "notepad";
         Process proc;
         IntPtr hWnd;
 

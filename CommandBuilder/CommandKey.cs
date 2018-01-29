@@ -52,71 +52,71 @@ namespace CommandBuilder
             switch(Code)
             {
                 case "1":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_A, VirtualKeyCode.VK_S };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_A, VirtualKeyCode.VK_S };
                     break;
                 case "2":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_S };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_S };
                     break;
                 case "3":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_D, VirtualKeyCode.VK_S };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_D, VirtualKeyCode.VK_S };
                     break;
                 case "4":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_A };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_A };
                     break;
                 case "6":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_D };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_D };
                     break;
                 case "7":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_A, VirtualKeyCode.VK_W };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_A, VirtualKeyCode.VK_W };
                     break;
                 case "8":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_W };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_W };
                     break;
                 case "9":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_D, VirtualKeyCode.VK_W };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_D, VirtualKeyCode.VK_W };
                     break;
                 case "DS":
                     break;
                 case "BS":
                     break;
                 case "J":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_W };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_W };
                     break;
                 case "LP":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_G };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_G };
                     break;
                 case "MP":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_H };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_H };
                     break;
                 case "HP":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_J };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_J };
                     break;
                 case "LK":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_B };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_B };
                     break;
                 case "MK":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_N };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_N };
                     break;
                 case "HK":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_M };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_M };
                     break;
                 case "PP":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_G, VirtualKeyCode.VK_H };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_G, VirtualKeyCode.VK_H };
                     break;
                 case "PPP":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_G, VirtualKeyCode.VK_H, VirtualKeyCode.VK_J };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_G, VirtualKeyCode.VK_H, VirtualKeyCode.VK_J };
                     break;
                 case "KK":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_B, VirtualKeyCode.VK_N };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_B, VirtualKeyCode.VK_N };
                     break;
                 case "KKK":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_B, VirtualKeyCode.VK_N, VirtualKeyCode.VK_M };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_B, VirtualKeyCode.VK_N, VirtualKeyCode.VK_M };
                     break;
                 case "VS":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_H, VirtualKeyCode.VK_N };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_H, VirtualKeyCode.VK_N };
                     break;
                 case "VT":
-                    new List<VirtualKeyCode>() { VirtualKeyCode.VK_J, VirtualKeyCode.VK_M };
+                    codes = new List<VirtualKeyCode>() { VirtualKeyCode.VK_J, VirtualKeyCode.VK_M };
                     break;
                 default:
                     break;

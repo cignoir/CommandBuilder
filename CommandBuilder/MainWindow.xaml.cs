@@ -35,7 +35,7 @@ LP(30F)
 (20F)
 623+LK(100)";
 
-            var proccesses = Process.GetProcessesByName("XXX");
+            var proccesses = Process.GetProcessesByName(GameClient.processName);
             if (proccesses != null && proccesses.Length > 0)
             {
                 this.gameClient = new GameClient(proccesses.First());
