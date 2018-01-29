@@ -1,22 +1,20 @@
-﻿using CommandBuilder.Properties;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CommandBuilder
 {
     class KeyInputReceiver
     {
+        static Stopwatch debugStopwatch = new Stopwatch();
         static Stopwatch stopwatch = new Stopwatch();
         static List<KeyFrame> keyBuffer = new List<KeyFrame>();
-        static Dictionary<Key, bool[]> matrix = new Dictionary<Key, bool[]>();
+        public static Dictionary<Key, bool[]> matrix = new Dictionary<Key, bool[]>();
 
         public static void Down(Key key)
         {
+            //debugStopwatch.Restart();
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 keyBuffer.Clear();
@@ -40,6 +38,8 @@ namespace CommandBuilder
                     matrix = CommandParser.CreateMatrix(keyBuffer, matrix, key);
                 }
             }
+            //debugStopwatch.Stop();
+            //Console.WriteLine(debugStopwatch.ElapsedMilliseconds);
         }
 
         public static void Up(Key key)
