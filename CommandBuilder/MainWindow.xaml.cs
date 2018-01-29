@@ -44,26 +44,24 @@ LP(30F)
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            if (gameClient == null)
-            {
-                return;
-            }
-
             stopwatch.Restart();
             var commands = CommandCache.FindOrBuild(commandTextBox.Text);
             stopwatch.Stop();
 
             long overhead = stopwatch.ElapsedMilliseconds;
 
-            gameClient.Activate();
-
-            stopwatch.Restart();
-            foreach (var command in commands)
+            if (gameClient != null)
             {
-                command.Input();
-                Console.WriteLine(command.ToString());
+                gameClient.Activate();
+
+                stopwatch.Restart();
+                foreach (var command in commands)
+                {
+                    command.Input();
+                    Console.WriteLine(command.ToString());
+                }
+                stopwatch.Stop();
             }
-            stopwatch.Stop();
 
             Console.WriteLine("\r\nOverhead: " + overhead + " ms");
             Console.WriteLine("Elapsed: " + stopwatch.ElapsedMilliseconds + " ms");

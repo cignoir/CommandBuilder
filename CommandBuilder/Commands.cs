@@ -9,8 +9,6 @@ namespace CommandBuilder
 {
     class Commands
     {
-        private static float FRAME_RATE = 59.94f;
-
         public static CommandKey DEFAULT = new CommandKey("5");
         public static CommandKey D1 = new CommandKey("1");
         public static CommandKey D2 = new CommandKey("2");
@@ -62,16 +60,6 @@ namespace CommandBuilder
         {
             var matchKeys = GetDefinedKeys().Where(k => k.Code.Equals(chars));
             return matchKeys != null && matchKeys.Count() > 0 ? matchKeys.First() : DEFAULT;
-        }
-
-        public static int FrameToMillis(float frameCount)
-        {
-            return (int)((1000 / FRAME_RATE) * frameCount);
-        }
-
-        public static int MillisToFrame(int millis)
-        {
-            return (int)(millis * FRAME_RATE / 1000);
         }
     }
 }

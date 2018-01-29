@@ -9,24 +9,27 @@ namespace CommandBuilder
 {
     class CommandParser
     {
-        private static Regex commandPattern = new Regex(@"^(.*)?(\(\d+F?\))$", RegexOptions.IgnoreCase);
+        private static Regex splitPattern = new Regex(@"(\(\d+F?\))", RegexOptions.IgnoreCase);
         private static Regex waitPattern = new Regex(@"\((\d+)(F?)\)", RegexOptions.IgnoreCase);
 
         public static List<Command> Parse(string commandText)
         {
             var lines = commandText.Replace("\r\n", "\n").Split('\n');
-            var commandList = lines.SelectMany(command => CommandParser.ParseLine(command));
+            var commandList = lines.SelectMany(commandLine => CommandParser.ParseLine(commandLine));
             return commandList.ToList();
         }
 
         public static List<Command> ParseLine(string line)
         {
-            var commandList = new List<Command>();
+            var keys = CreateCommandKeys(line);
+            var commands = CreateCommands(keys);
+            return commands;
+        }
+
+        public static List<CommandKey> CreateCommandKeys(string line)
+        {
             var commandKeyList = new List<CommandKey>();
-
-            line = line.Trim();
-
-            var commandSplit = commandPattern.Split(line).Where(str => str.Length > 0);
+            var commandSplit = splitPattern.Split(line.Trim()).Where(str => str.Length > 0);
             foreach (var s in commandSplit)
             {
                 var m = waitPattern.Match(s);
@@ -48,16 +51,14 @@ namespace CommandBuilder
                 }
                 else
                 {
-                    var chars = line.ToCharArray();
+                    var chars = s.ToCharArray();
                     var inputs = new StringBuilder();
 
-                    for (int i = 0; i < line.Length; i++)
+                    for (int i = 0; i < s.Length; i++)
                     {
-                        char c = chars[i];
-
-                        if (Commands.GetAvailableChars().Contains(c))
+                        if (Commands.GetAvailableChars().Contains(chars[i]))
                         {
-                            inputs.Append(c);
+                            inputs.Append(chars[i]);
 
                             var chain = inputs.ToString();
                             if (Commands.GetDefinedKeyCodes().Contains(chain))
@@ -69,9 +70,14 @@ namespace CommandBuilder
                     }
                 }
             }
+            return commandKeyList;
+        }
 
-            
-            for(int i = 0; i < commandKeyList.Count(); i++)
+        public static List<Command> CreateCommands(List<CommandKey> commandKeyList)
+        {
+            var commandList = new List<Command>();
+
+            for (int i = 0; i < commandKeyList.Count(); i++)
             {
                 if (i == 0)
                 {
@@ -87,7 +93,7 @@ namespace CommandBuilder
                     {
                         continue;
                     }
-                    else if(prevKey.IsAddSymbol() && !currentKey.IsAddSymbol())
+                    else if (prevKey.IsAddSymbol() && !currentKey.IsAddSymbol())
                     {
                         commandList.Last().Add(currentKey);
                     }

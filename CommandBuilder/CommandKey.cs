@@ -31,12 +31,12 @@ namespace CommandBuilder
         public void SetWaitFrame(int frame)
         {
             this.WaitFrame = frame;
-            this.WaitMillis = Commands.FrameToMillis(frame);
+            this.WaitMillis = CommandUtils.FrameToMillis(frame);
         }
 
         public void SetWaitMillis(int millis)
         {
-            this.WaitFrame = Commands.MillisToFrame(millis);
+            this.WaitFrame = CommandUtils.MillisToFrame(millis);
             this.WaitMillis = millis;
         }
 
