@@ -10,14 +10,14 @@ namespace CommandBuilder
     {
         private static float FRAME_RATE = 59.94f;
 
-        public static int FrameToMillis(float frameCount)
+        public static long FrameToMillis(float frameCount)
         {
-            return (int)((1000 / FRAME_RATE) * frameCount);
+            return (long)((1000 / FRAME_RATE) * frameCount);
         }
 
-        public static int MillisToFrame(int millis)
+        public static float MillisToFrame(long millis)
         {
-            return (int)(millis * FRAME_RATE / 1000);
+            return millis * FRAME_RATE / 1000;
         }
     }
 }

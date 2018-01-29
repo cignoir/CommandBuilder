@@ -42,7 +42,7 @@ namespace CommandBuilder
             {
                 if (key.IsWait())
                 {
-                    Thread.Sleep(key.WaitMillis);
+                    Thread.Sleep((int)key.WaitMillis);
                 }
                 else
                 {

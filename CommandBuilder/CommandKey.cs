@@ -10,8 +10,8 @@ namespace CommandBuilder
     class CommandKey
     {
         public string Code { get; set; }
-        public int WaitFrame { get; set; }
-        public int WaitMillis { get; set; }
+        public float WaitFrame { get; set; }
+        public long WaitMillis { get; set; }
 
         public CommandKey(string code)
         {

@@ -22,7 +22,6 @@ namespace CommandBuilder
     public partial class MainWindow : Window
     {
         GameClient gameClient;
-        Stopwatch stopwatch = new Stopwatch();
 
         public MainWindow()
         {
@@ -54,6 +53,8 @@ LP(30F)
                 DetectGameClient();
             }
 
+            Stopwatch stopwatch = new Stopwatch();
+
             stopwatch.Restart();
             var commands = CommandCache.FindOrBuild(commandTextBox.Text);
             stopwatch.Stop();
@@ -76,6 +77,16 @@ LP(30F)
             Console.WriteLine("\r\nOverhead: " + overhead + " ms");
             Console.WriteLine("Elapsed: " + stopwatch.ElapsedMilliseconds + " ms");
             Console.WriteLine("===============================");
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyInputReceiver.Down(e.Key);
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            KeyInputReceiver.Up(e.Key);
         }
     }
 }

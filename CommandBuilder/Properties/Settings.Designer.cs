@@ -46,5 +46,17 @@ namespace CommandBuilder.Properties {
                 this["InputIntervalFrame"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public long resetIntervalMillis {
+            get {
+                return ((long)(this["resetIntervalMillis"]));
+            }
+            set {
+                this["resetIntervalMillis"] = value;
+            }
+        }
     }
 }
