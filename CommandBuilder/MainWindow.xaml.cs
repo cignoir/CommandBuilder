@@ -35,6 +35,11 @@ LP(30F)
 (20F)
 623+LK(100)";
 
+            DetectGameClient();
+        }
+
+        private void DetectGameClient()
+        {
             var proccesses = Process.GetProcessesByName(GameClient.processName);
             if (proccesses != null && proccesses.Length > 0)
             {
@@ -44,6 +49,11 @@ LP(30F)
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
+            if (this.gameClient == null)
+            {
+                DetectGameClient();
+            }
+
             stopwatch.Restart();
             var commands = CommandCache.FindOrBuild(commandTextBox.Text);
             stopwatch.Stop();
