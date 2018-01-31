@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="372.699" Width="650.12" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
     <Grid>
-        <TextBox x:Name="commandTextBox" HorizontalAlignment="Left" Height="161" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="playButton" Content="Button" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
+        <TextBox x:Name="commandTextBox" HorizontalAlignment="Left" Height="41" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
+        <Button x:Name="playButton" Content="Button" HorizontalAlignment="Left" Margin="557,22,0,0" VerticalAlignment="Top" Width="75" Click="playButton_Click"/>
+        <TextBox x:Name="commandLogTextBox" HorizontalAlignment="Left" Height="41" Margin="10,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="519"/>
 
     </Grid>
 </Window>

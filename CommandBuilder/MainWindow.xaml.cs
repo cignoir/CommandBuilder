@@ -12,17 +12,14 @@ namespace CommandBuilder
     public partial class MainWindow : Window
     {
         GameClient gameClient;
+        Key lastDownKey = Key.None;
 
         public MainWindow()
         {
             InitializeComponent();
             commandTextBox.AcceptsReturn = true;
 
-            commandTextBox.Text = @"236+LP(30F)
-LP(30F)
-4+MP(10F)
-(20F)
-623+LK(100)";
+            commandTextBox.Text = @"LP(50)MP(100)HP";
 
             DetectGameClient();
         }
@@ -71,12 +68,26 @@ LP(30F)
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyInputReceiver.Down(e.Key);
+            
+            if (lastDownKey != e.Key)
+            {
+                var commandKey = Commands.Find(e.Key);
+                if (!commandKey.Equals(Commands.DEFAULT))
+                {
+                    var log = KeyInputReceiver.Down(commandKey);
+                    commandLogTextBox.Text = log;
+                }
+
+                lastDownKey = e.Key;
+            }
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            KeyInputReceiver.Up(e.Key);
+            if (lastDownKey.Equals(e.Key))
+            {
+                lastDownKey = Key.None;
+            }
         }
     }
 }

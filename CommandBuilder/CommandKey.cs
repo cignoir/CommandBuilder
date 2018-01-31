@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WindowsInput.Native;
 
 namespace CommandBuilder
@@ -24,13 +25,19 @@ namespace CommandBuilder
             return Code.Equals("WT");
         }
 
-        public void SetWaitFrame(int frame)
+        public bool IsMoveKey()
+        {
+            List<string> numerics = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            return numerics.Contains(Code);
+        }
+
+        public void SetWaitFrame(float frame)
         {
             this.WaitFrame = frame;
             this.WaitMillis = CommandUtils.FrameToMillis(frame);
         }
 
-        public void SetWaitMillis(int millis)
+        public void SetWaitMillis(long millis)
         {
             this.WaitFrame = CommandUtils.MillisToFrame(millis);
             this.WaitMillis = millis;
@@ -38,7 +45,7 @@ namespace CommandBuilder
 
         public override string ToString()
         {
-            return IsWait() ? string.Format("({0}F,{1}ms)", WaitFrame, WaitMillis) : Code;
+            return IsWait() ? string.Format("({0}F)", (int)Math.Round(WaitFrame)) : Code;
         }
 
         public List<VirtualKeyCode> GetVirtualKeyCodes()
@@ -119,6 +126,16 @@ namespace CommandBuilder
             }
 
             return codes;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.Code.Equals(((CommandKey)obj).Code);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

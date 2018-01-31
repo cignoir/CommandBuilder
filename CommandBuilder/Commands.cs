@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 namespace CommandBuilder
 {
@@ -54,8 +56,83 @@ namespace CommandBuilder
 
         public static CommandKey Find(string chars)
         {
+            Console.WriteLine(chars);
             var matchKeys = GetDefinedKeys().Where(k => k.Code.Equals(chars));
             return matchKeys != null && matchKeys.Count() > 0 ? matchKeys.First() : DEFAULT;
+        }
+
+        public static CommandKey Find(Key key)
+        {
+            CommandKey commandKey = Commands.DEFAULT;
+
+            switch(key.ToString())
+            {
+                case "W":
+                    commandKey = Commands.D8;
+                    break;
+                case "A":
+                    commandKey = Commands.D4;
+                    break;
+                case "S":
+                    commandKey = Commands.D2;
+                    break;
+                case "D":
+                    commandKey = Commands.D6;
+                    break;
+                case "G":
+                    commandKey = Commands.LP;
+                    break;
+                case "H":
+                    commandKey = Commands.MP;
+                    break;
+                case "J":
+                    commandKey = Commands.HP;
+                    break;
+                case "B":
+                    commandKey = Commands.LK;
+                    break;
+                case "N":
+                    commandKey = Commands.MK;
+                    break;
+                case "M":
+                    commandKey = Commands.HK;
+                    break;
+                default:
+                    break;
+            }
+
+            return commandKey;
+        }
+
+        public static bool CanMerge(CommandKey k1, CommandKey k2)
+        {
+            return (k1.Code == "4" && k2.Code == "2" || k1.Code == "2" && k2.Code == "4") || (k1.Code == "6" && k2.Code == "2" || k1.Code == "2" && k2.Code == "6") || (k1.Code == "6" && k2.Code == "8" || k1.Code == "8" && k2.Code == "6") || (k1.Code == "4" && k2.Code == "8" || k1.Code == "8" && k2.Code == "4");
+        }
+
+        public static CommandKey Merge(CommandKey k1, CommandKey k2)
+        {
+            CommandKey result;
+            if (k1.Code == "4" && k2.Code == "2" || k1.Code == "2" && k2.Code == "4")
+            {
+                result = Commands.D1;
+            }
+            else if (k1.Code == "6" && k2.Code == "2" || k1.Code == "2" && k2.Code == "6")
+            {
+                result = Commands.D3;
+            }
+            else if (k1.Code == "6" && k2.Code == "8" || k1.Code == "8" && k2.Code == "6")
+            {
+                result = Commands.D9;
+            }
+            else if (k1.Code == "4" && k2.Code == "8" || k1.Code == "8" && k2.Code == "4")
+            {
+                result = Commands.D7;
+            }
+            else
+            {
+                result = Commands.DEFAULT;
+            }
+            return result;
         }
     }
 }

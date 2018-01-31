@@ -50,7 +50,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsInput">
-      <HintPath>C:\Users\tnagata\Desktop\sglabo-master\sglabo\lib\WindowsInput.dll</HintPath>
+      <HintPath>.\WindowsInput.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,9 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommandKey.cs" />
     <Compile Include="CommandUtils.cs" />
     <Compile Include="GameClient.cs" />
-    <Compile Include="KeyFrame.cs" />
     <Compile Include="KeyInputReceiver.cs" />
     <Compile Include="Win32API.cs" />
     <Page Include="MainWindow.xaml">
@@ -73,7 +73,6 @@
     </Compile>
     <Compile Include="Command.cs" />
     <Compile Include="CommandCache.cs" />
-    <Compile Include="CommandKey.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="MainWindow.xaml.cs">
