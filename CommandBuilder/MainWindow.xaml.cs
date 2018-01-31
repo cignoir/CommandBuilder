@@ -12,7 +12,6 @@ namespace CommandBuilder
     public partial class MainWindow : Window
     {
         GameClient gameClient;
-        Key lastDownKey = Key.None;
 
         public MainWindow()
         {
@@ -68,25 +67,11 @@ namespace CommandBuilder
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            if (lastDownKey != e.Key)
+            var commandKey = Commands.Find(e.Key);
+            if (!commandKey.Equals(Commands.DEFAULT))
             {
-                var commandKey = Commands.Find(e.Key);
-                if (!commandKey.Equals(Commands.DEFAULT))
-                {
-                    var log = KeyInputReceiver.Down(commandKey);
-                    commandLogTextBox.Text = log;
-                }
-
-                lastDownKey = e.Key;
-            }
-        }
-
-        private void Window_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (lastDownKey.Equals(e.Key))
-            {
-                lastDownKey = Key.None;
+                var log = KeyInputReceiver.Down(commandKey);
+                commandLogTextBox.Text = log;
             }
         }
     }

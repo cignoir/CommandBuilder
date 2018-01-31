@@ -45,7 +45,23 @@ namespace CommandBuilder
 
         public override string ToString()
         {
-            return IsWait() ? string.Format("({0}F)", (int)Math.Round(WaitFrame)) : Code;
+            var code = "";
+            if (IsWait())
+            {
+                if (WaitFrame <= 2.0f)
+                {
+                    code = "+";
+                }
+                else
+                {
+                    code = string.Format("({0}F)", (int)Math.Round(WaitFrame));
+                }
+            }
+            else
+            {
+                code = Code;
+            }
+            return code;
         }
 
         public List<VirtualKeyCode> GetVirtualKeyCodes()

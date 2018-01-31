@@ -14,21 +14,22 @@ namespace CommandBuilder
 
         public static string Down(CommandKey key)
         {
+            var elapsedTime = stopwatch.ElapsedMilliseconds;
+
             //debugStopwatch.Restart();
-            if (stopwatch.ElapsedMilliseconds > 500)
+            if (elapsedTime > 500)
             {
                 keyBuffer.Clear();
             }
 
             if (keyBuffer.Count() == 0)
             {
-                stopwatch.Restart();
                 keyBuffer.Add(key);
             }
             else
             {
                 var waitKey = new CommandKey("WT");
-                waitKey.SetWaitMillis(stopwatch.ElapsedMilliseconds);
+                waitKey.SetWaitMillis(elapsedTime);
 
                 if ((int)waitKey.WaitFrame <= 1)
                 {
@@ -48,7 +49,8 @@ namespace CommandBuilder
                     }
                     else
                     {
-                        keyBuffer.Add(Commands.PLUS);
+                        //keyBuffer.Add(Commands.PLUS);
+                        keyBuffer.Add(waitKey);
                         keyBuffer.Add(key);
                     }                    
                 }
@@ -56,12 +58,12 @@ namespace CommandBuilder
                 {
                     keyBuffer.Add(waitKey);
                     keyBuffer.Add(key);
-                }                
-
-                stopwatch.Restart();
+                }
             }
 
             var log = string.Join("", keyBuffer);
+            stopwatch.Restart();
+
             //Console.WriteLine(string.Join("", keyBuffer));
 
             //debugStopwatch.Stop();
